@@ -22,7 +22,6 @@ else
 fi
 
 echo STATUS=$status
-exit 0
 
 echo hello world
 echo $SHELL
