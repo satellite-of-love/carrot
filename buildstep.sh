@@ -9,7 +9,7 @@ secretmessage=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
 buildnumber=$BUILD_NUMBER
 
 echo phase=$PHASE
-if [[] $phase == "STARTED" ] ; then
+if [[ $phase == "STARTED" ]] ; then
     echo "I am just getting started"
     status=STARTED
 else
