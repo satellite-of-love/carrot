@@ -3,7 +3,8 @@
 tcbaseurl=$1
 buildid=$2 # %teamcity.build.id%
 buildtypeid=$3 # %system.teamcity.buildType.id%
-phase=$4
+phase=$4 # STARTED | FINALIZED
+status=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
 
 echo hello world
 echo $SHELL
