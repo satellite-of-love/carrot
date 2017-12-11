@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 tcbaseurl=$1
 buildid=$2 # %teamcity.build.id%
@@ -8,11 +8,12 @@ secretmessage=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
 
 buildnumber=$BUILD_NUMBER
 
-if [ $phase == "STARTED" ] ; then
+echo phase=$PHASE
+if [[] $phase == "STARTED" ] ; then
     echo "I am just getting started"
     status=STARTED
 else
-    if [ -z "$secretmessage" ] ; then
+    if [[ -z "$secretmessage" ]] ; then
         echo "I have no secret message so I must have failed"
         status=FAILURE
     else
