@@ -26,7 +26,7 @@ stingygsting="http://$tcbaseurl/viewLog.html?buildId=$buildid&buildTypeId=$build
 
 scm="{\"url\": \"$giturl\", \"branch\": \"$branch\", \"commit\": \"$gitsha\"}"
 
-payload="{\"name\": \"$buildtypeid $buildid\", \"duration\": 3, \"build\": {\"number\": \"$BUILD_NUMBER\", \"phase\": \"$phase\", \"status\": \"$phase\", \"full_url\": \"$stingygsting\", \"scm\": $scm}}"
+payload="{\"name\": \"$buildtypeid $buildid\", \"duration\": 3, \"build\": {\"number\": \"$BUILD_NUMBER\", \"phase\": \"$phase\", \"status\": \"$status\", \"full_url\": \"$stingygsting\", \"scm\": $scm}}"
 echo $payload
 
 curl -v -XPOST -H 'Content-Type: application/json' -d "${payload}" ${endpoint}
