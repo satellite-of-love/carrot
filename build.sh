@@ -1,4 +1,4 @@
 sleep 10
 cat monster.txt
 
-exit 1
+##teamcity[setParameter name='secretmessage' value='Penguins LOL']

@@ -4,13 +4,27 @@ tcbaseurl=$1
 buildid=$2 # %teamcity.build.id%
 buildtypeid=$3 # %system.teamcity.buildType.id%
 phase=$4 # STARTED | FINALIZED
-status=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
+secretmessage=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
+
+buildnumber=$BUILD_NUMBER
+
+if [[ $phase == "STARTED" ]] ; then
+    status=STARTED
+else
+    if [[ -z "$secretmessage" ]] ; then
+        status=FAILURE
+    else
+        status=SUCCESS
+        buildnumber=$secretmessage
+    fi
+fi
 
 echo hello world
 echo $SHELL
 git status
 git remote show origin
 echo 2 $buildid
+echo 3 $buildnumber
 echo 4 $BUILD_NUMBER
 echo $0
 endpoint="https://webhook.atomist.com/atomist/jenkins/teams/T7LSAC14L"
@@ -26,7 +40,7 @@ stingygsting="http://$tcbaseurl/viewLog.html?buildId=$buildid&buildTypeId=$build
 
 scm="{\"url\": \"$giturl\", \"branch\": \"$branch\", \"commit\": \"$gitsha\"}"
 
-payload="{\"name\": \"$buildtypeid $buildid\", \"duration\": 3, \"build\": {\"number\": \"$BUILD_NUMBER\", \"phase\": \"$phase\", \"status\": \"$status\", \"full_url\": \"$stingygsting\", \"scm\": $scm}}"
+payload="{\"name\": \"$buildtypeid $buildid\", \"duration\": 3, \"build\": {\"number\": \"$buildnumber\", \"phase\": \"$phase\", \"status\": \"$status\", \"full_url\": \"$stingygsting\", \"scm\": $scm}}"
 echo $payload
 
 curl -v -XPOST -H 'Content-Type: application/json' -d "${payload}" ${endpoint}
