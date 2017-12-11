@@ -9,13 +9,15 @@ secretmessage=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
 buildnumber=$BUILD_NUMBER
 
 if [[ $phase == "STARTED" ]] ; then
+    echo "I am just getting started"
     status=STARTED
 else
     if [[ -z "$secretmessage" ]] ; then
+        echo "I have no secret message so I must have failed"
         status=FAILURE
     else
+        echo "The secret message is $secretmessage"
         status=SUCCESS
-        buildnumber=$secretmessage
     fi
 fi
 
