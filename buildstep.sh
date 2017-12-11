@@ -16,7 +16,7 @@ else
         echo "I have no secret message so I must have failed"
         status=FAILURE
     else
-        echo "The secret message is $secretmessage"
+        echo "The secret message is <$secretmessage>"
         status=SUCCESS
     fi
 fi
