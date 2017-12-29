@@ -41,7 +41,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 echo $branch
 #gitsha="c75c7670253f6f6c9894df9ad867e78435210d8e"
 gitsha=$(git rev-parse HEAD)
-stingygsting="http://$tcbaseurl/viewLog.html?buildId=$buildid&buildTypeId=$buildtypeid&tab=buildResultsDiv"
+stingygsting="http://$tcbaseurl/viewLog.html?buildId=$buildid&buildTypeId=$buildtypeid&tab=buildLog"
 
 scm="{\"url\": \"$giturl\", \"branch\": \"$branch\", \"commit\": \"$gitsha\"}"
 
