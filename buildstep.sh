@@ -1,22 +1,23 @@
 #!/bin/bash
 
-tcbaseurl=$1
+tcbaseurl=$1 # "teamcity.nvidia.com"
 echo "tcbaseurl=$tcbaseurl"
 buildid=$2 # %teamcity.build.id%
 echo "buildid=$buildid"
 buildtypeid=$3 # %system.teamcity.buildType.id%
 echo "buildtypeid=$buildtypeid"
-tcbranch=$4
+tcbranch=$4 # %teamcity.build.branch%
 echo "tcbranch=$tcbranch"
 phase=$5 # STARTED | FINALIZED
 echo "phase=$phase"
-secretmessage=$6 # when phase=FINALIZED: something (success) or nothing (failure)
+secretmessage=$6 # %secretmessage% (when phase=FINALIZED, something (success) or nothing (failure))
 echo "secretmessage=$secretmessage"
 
+repoOwner="satellite-of-love"
+repoName="carrot"
+slackTeamId="T7LSAC14L" # LightningMcQueen
+
 buildnumber=$BUILD_NUMBER
-
-
-echo phase=$PHASE
 if [[ $phase == "STARTED" ]] ; then
     echo "I am just getting started"
     status=STARTED
@@ -32,9 +33,9 @@ fi
 
 echo STATUS=$status
 
-endpoint="https://webhook.atomist.com/atomist/jenkins/teams/T7LSAC14L"
+endpoint="https://webhook.atomist.com/atomist/jenkins/teams/$slackTeamId"
 
-giturl="https://github.com/satellite-of-love/carrot"
+giturl="https://github.com/$repoOwner/$repoName"
 #giturl=$(git config --get remote.origin.url)
 branch=$(git rev-parse --abbrev-ref HEAD)
 echo $branch
