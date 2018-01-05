@@ -2,6 +2,7 @@
 
 restart_reason=$1
 
+# be slow
 sleep 10
 cat monster.txt
 
