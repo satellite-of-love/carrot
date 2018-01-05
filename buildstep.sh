@@ -1,12 +1,20 @@
 #!/bin/bash
 
 tcbaseurl=$1
+echo "tcbaseurl=$tcbaseurl"
 buildid=$2 # %teamcity.build.id%
+echo "buildid=$buildid"
 buildtypeid=$3 # %system.teamcity.buildType.id%
-phase=$4 # STARTED | FINALIZED
-secretmessage=$5 # STARTED | FAILURE | SUCCESS | UNSTABLE
+echo "buildtypeid=$buildtypeid"
+tcbranch=$4
+echo "tcbranch=$tcbranch"
+phase=$5 # STARTED | FINALIZED
+echo "phase=$phase"
+secretmessage=$6 # when phase=FINALIZED: something (success) or nothing (failure)
+echo "secretmessage=$secretmessage"
 
 buildnumber=$BUILD_NUMBER
+
 
 echo phase=$PHASE
 if [[ $phase == "STARTED" ]] ; then
@@ -24,17 +32,8 @@ fi
 
 echo STATUS=$status
 
-echo hello world
-echo $SHELL
-git status
-git remote show origin
-echo 2 $buildid
-echo 3 $buildnumber
-echo 4 $BUILD_NUMBER
-echo $0
 endpoint="https://webhook.atomist.com/atomist/jenkins/teams/T7LSAC14L"
 
-echo 3 $buildtypeid
 giturl="https://github.com/satellite-of-love/carrot"
 #giturl=$(git config --get remote.origin.url)
 branch=$(git rev-parse --abbrev-ref HEAD)
