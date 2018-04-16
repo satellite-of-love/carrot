@@ -8,7 +8,6 @@ don't tell me what to do
 
 you can do the things
 
-oh man. that's a long time ago
-
+peanut butter Oreos
 
 Copyright 2016 Atomist
