@@ -10,4 +10,4 @@ you can do the things
 
 peanut butter Oreos
 
-Copyright 2016 Atomist
+Copyright 2018 Atomist
