@@ -14,4 +14,4 @@ Copyright 2018 Atomist
  
 Stop telling me what to do!
 
-Mob mentality
+Mob mentality    
